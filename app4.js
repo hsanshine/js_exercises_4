@@ -320,6 +320,7 @@ for (let entry of JOURNAL) {
 //console.log(phi(tableFor("peanut teeth", JOURNAL))); // it has a correation of one
 // one all days this is the case the guy turns to a squirrel ahahaha
 
+// string functions
 console.log([1, 2, 1, 4].lastIndexOf(1)); // has an optional argument for where to start the search
 console.log([1, 2, 20, 4].indexOf(4)); //also has an optinal argument for where to start the search
 
@@ -342,22 +343,24 @@ function remove(array, index) {
 console.log(remove(["a", "b", "c", "d", "e", "f", "g"], 2)); // c will be removed
 console.log(["a", "b", "c", "d"].concat("hamza"));
 
+//common string functions
 console.log("coconuts".slice(4));
 console.log("coconut".indexOf("u"));
 console.log("hamza".indexOf("amz"));
-console.log("  kyamanywa  ".trim());
-console.log("7".padStart(3, "0"));
+console.log("  kyamanywa  ".trim()); //removes the white spaces on the sides
+console.log("7".padStart(3, "0")); // default padStart to add characters to the start
 
 let sentence = "Secretarybirds specialize in stomping";
-let words = sentence.split(" ");
+let words = sentence.split(" "); // return an array of a string split at the given character
 console.log(words);
-console.log(words.join(". "));
+console.log(words.join(". ")); // join up an
 console.log(" hamza is king. ".repeat(5));
 
 let string = "abc";
 console.log(string.length);
 console.log(string[1]);
 
+// defining a function using rest parametes, ... and the parameter number come in on an array
 function max(...numbers) {
   // the input here will be treated as in coming in some sort of array
   let result = -Infinity;
@@ -371,6 +374,7 @@ function max(...numbers) {
 console.log(max(5, 6, 7));
 console.log(max(5, 10, 100, -1));
 
+// exploring rest parameters
 function myFun(a, b, ...otherLetters) {
   console.log("a", a);
   console.log("b", b);
@@ -380,11 +384,14 @@ function myFun(a, b, ...otherLetters) {
 myFun(1, 2, 10, 200, 20, 30, 40);
 
 let numbers = [5, 1, 7];
+
+// spreading out an array for printing using the ... operators
 console.log(...numbers); //they are not being passed an array because that will return an error, they are being passed on as numbers separated by a comma
 
 words = ["never", "fully"];
 console.log(["will", ...words, "understand"]); //the dots break the array words into its component words separated by commas..nice :)😂
 
+// to get a random point on a circle
 function randomPointOnCircle(radius) {
   let angle = Math.random() * 2 * Math.PI; //this angle will be in radians, we take a faction of 2 PI, 2 PI is not included in our range
   return { x: radius * Math.cos(angle), y: radius * Math.sin(angle) };
@@ -392,6 +399,7 @@ function randomPointOnCircle(radius) {
 
 console.log(randomPointOnCircle(2));
 
+//exploring how the Math.random() function works
 console.log(Math.random());
 console.log(Math.random());
 console.log(Math.random());
@@ -420,12 +428,14 @@ let my_entry = {
   "testing this": "true",
 };
 
+//learning stringify and parse for serialization
 string = JSON.stringify(my_entry); // will put double quotes on everything that should have double quotes
 console.log(string);
 console.log(JSON.parse(string));
 
 //exerices
 
+// custom range function to return array from start to end, end inclusive, can also provide the step
 function range(start, end, step = 1) {
   let array = [];
   let buildArray = (array) => {
@@ -445,6 +455,7 @@ function range(start, end, step = 1) {
 
 console.log(range(100, 200, -13));
 
+//function to return the sum of elements in an array
 function sum(numberArray) {
   let total = 0;
   for (let num of numberArray) {
@@ -456,6 +467,7 @@ function sum(numberArray) {
 console.log(range(1, 10, 2));
 console.log(sum(range(1, 10, 2)));
 
+// function to reverse a list and return the new list, (doesnot work in place)
 const reverseArray = function (array) {
   new_array = [];
   for (let element of array) {
@@ -470,6 +482,7 @@ const reverseArray = function (array) {
 console.log(reverseArray(["m", "n", "o", "p"]));
 console.log(reverseArray([1, 2, 3, 4]));
 
+//function to reverse a list in place
 const reverseArrayInPlace = (array) => {
   let last_index = array.length - 1;
   let i = 0;
@@ -498,6 +511,7 @@ let list = {
 };
 console.log(list);
 
+//function to convert an array to a list
 const arrayToList = function (array) {
   let list = {}; // is an empty object, empty objects have the value undefined since they are not holding anything
   let outer_object = list; //because i dont want to over writing my header for the list
@@ -541,6 +555,7 @@ let my_list = arrayToList([
   "k",
 ]);
 
+//function to convert a list to an array
 const listToArray = function (list) {
   // an array from a list, should return an array
   let outer_object = list;
@@ -559,6 +574,7 @@ const listToArray = function (list) {
 
 console.log(listToArray(my_list));
 
+//function to add element at the start of the list
 const prepend = function (element, list) {
   let newList = {
     value: element,
@@ -570,6 +586,7 @@ const prepend = function (element, list) {
 my_list = prepend("hamza", my_list);
 console.log(my_list);
 
+//loop function to return element at the nth position of the list
 const nth = function (position, list) {
   if (position >= 0) {
     let outerObject = list;
@@ -584,6 +601,7 @@ const nth = function (position, list) {
 
 console.log(nth(1, my_list));
 
+//recursive functoin to return the element at the nth position of the list
 function nthRecursive(position, list) {
   // we use position as a counter till its zero
   if (position === 0) return list.value;
@@ -596,6 +614,7 @@ function nthRecursive(position, list) {
 
 console.log(nthRecursive(20, my_list));
 
+//compares if two objects are the same
 function deepEqual(value1, value2) {
   if (typeof value1 !== "object" && typeof value1 === typeof value2) {
     return value1 === value2;
